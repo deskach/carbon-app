@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "@types/carbon-components-react": "^7.33.0"
+    "@types/carbon-components-react": "^7.33.0",
+    "@types/carbon__icons-react": "^10.31.0"
   }
 }
