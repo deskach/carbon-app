@@ -18,7 +18,7 @@ import {
   UserAvatar20,
 } from '@carbon/icons-react';
 
-const TutorialHeader = () => (
+const TutorialHeader: React.FunctionComponent<{}> = () => (
   <HeaderContainer
     render={({isSideNavExpanded, onClickSideNavExpand}) => (
       <Header aria-label="Carbon Tutorial">
