@@ -1,4 +1,5 @@
 import React from 'react';
+import './_repo-page.scss';
 import RepoTable from "./RepoTable";
 
 const headers = [

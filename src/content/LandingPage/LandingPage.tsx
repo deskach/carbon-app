@@ -1,4 +1,5 @@
 import React from 'react';
+import './_landing-page.scss';
 import { Breadcrumb, BreadcrumbItem, Button, Tab, Tabs } from "carbon-components-react";
 
 enum TabRole {

@@ -1,4 +1,5 @@
 import React from 'react';
+import './_tutorial-header.scss'
 import {
   Header,
   HeaderContainer, HeaderGlobalAction,
