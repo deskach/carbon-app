@@ -12,13 +12,14 @@ import {
   SideNavItems,
   SkipToContent,
 } from 'carbon-components-react';
+import { Link, LinkProps } from 'react-router-dom';
 import {
   AppSwitcher20,
   Notification20,
   UserAvatar20,
 } from '@carbon/icons-react';
 
-const TutorialHeader: React.FunctionComponent<{}> = () => (
+const TutorialHeader: React.FC = () => (
   <HeaderContainer
     render={({isSideNavExpanded, onClickSideNavExpand}) => (
       <Header aria-label="Carbon Tutorial">
@@ -28,11 +29,11 @@ const TutorialHeader: React.FunctionComponent<{}> = () => (
           onClick={onClickSideNavExpand}
           isActive={isSideNavExpanded}
         />
-        <HeaderName href="/" prefix="IBM">
+        <HeaderName<LinkProps> element={Link} to={"/"} prefix="IBM">
           Carbon Tutorial
         </HeaderName>
         <HeaderNavigation aria-label="Carbon Tutorial">
-          <HeaderMenuItem href="/repos">Repositories</HeaderMenuItem>
+          <HeaderMenuItem<LinkProps> element={Link} to={"/repos"}>Repositories</HeaderMenuItem>
         </HeaderNavigation>
         <SideNav
           aria-label="Side navigation"
@@ -40,7 +41,7 @@ const TutorialHeader: React.FunctionComponent<{}> = () => (
           isPersistent={false}>
           <SideNavItems>
             <HeaderSideNavItems>
-              <HeaderMenuItem href="/repos">Repositories</HeaderMenuItem>
+              <HeaderMenuItem<LinkProps> element={Link} to="/repos">Repositories</HeaderMenuItem>
             </HeaderSideNavItems>
           </SideNavItems>
         </SideNav>
