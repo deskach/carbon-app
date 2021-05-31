@@ -20,7 +20,15 @@ interface RepoTableProps<Row extends DataTableRow = DataTableRow, Header extends
   headers: Header[];
 }
 
-const RepoTable: React.FC<RepoTableProps> = ({rows, headers}) => {
+interface GenericRow extends DataTableRow, Record<string, any> {
+}
+
+const RepoTable: React.FC<RepoTableProps<GenericRow>> = ({rows, headers}) => {
+  const getRowDescription = (rowId: string) => {
+    const row = rows.find(({ id }) => id === rowId);
+    return row ? row.description : '';
+  };
+
   return (
     <DataTable
       rows={rows}
@@ -55,7 +63,7 @@ const RepoTable: React.FC<RepoTableProps> = ({rows, headers}) => {
                     ))}
                   </TableExpandRow>
                   <TableExpandedRow colSpan={headers.length + 1}>
-                    <p>Row description</p>
+                    <p>{getRowDescription(row.id)}</p>
                   </TableExpandedRow>
                 </React.Fragment>
               ))}

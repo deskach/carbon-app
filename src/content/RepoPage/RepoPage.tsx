@@ -53,12 +53,16 @@ const LinkList: React.FC<{ url: string; homepageUrl: string }> = ({url, homepage
   </ul>
 );
 
+interface GQLArray extends Record<string, any> {
+  totalCount: number
+}
+
 interface GitHubRowDescriptor extends DataTableRow {
-  stargazers: Record<string, any>
+  stargazers: GQLArray
   createdAt: Date
   updatedAt: Date
-  issues: any
-  links: any
+  issues: GQLArray
+  links: GQLArray
   url: string
   homepageUrl: string
 }
