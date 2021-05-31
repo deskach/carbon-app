@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './_repo-page.scss';
 import RepoTable from "./RepoTable";
 import { gql, OperationVariables } from 'apollo-boost';
@@ -143,7 +143,7 @@ const RepoPage = () => {
             pageSize={currentPageSize}
             pageSizes={[5, 10, 15, 25]}
             itemsPerPageText="Items per page"
-            onChange={({ page, pageSize }) => {
+            onChange={({page, pageSize}) => {
               if (pageSize !== currentPageSize) {
                 setCurrentPageSize(pageSize);
               }
