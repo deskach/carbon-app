@@ -2,7 +2,7 @@ import React from 'react';
 import './_repo-page.scss';
 import RepoTable from "./RepoTable";
 import { gql, OperationVariables } from 'apollo-boost';
-import { DataTableRow, Link } from 'carbon-components-react';
+import { DataTableRow, DataTableSkeleton, Link } from 'carbon-components-react';
 import { Query, QueryResult } from 'react-apollo';
 
 const REPO_QUERY = gql`
@@ -106,20 +106,28 @@ const headers = [
 
 const RepoPage = () => {
   return <Query query={REPO_QUERY}>
-    {({ loading, error, data }: QueryResult<any, OperationVariables>) => {
+    {({loading, error, data}: QueryResult<any, OperationVariables>) => {
       // Wait for the request to complete
-      if (loading) return <>'Loading...'</>;
+      if (loading) {
+        return (
+          <DataTableSkeleton
+            columnCount={headers.length + 1}
+            rowCount={10}
+            headers={headers}
+          />
+        );
+      }
 
       // // Something went wrong with the data fetching
       if (error) return <>`Error! ${error.message}`</>;
 
       // If we're here, we've got our data!
-      const { repositories } = data.organization;
+      const {repositories} = data.organization;
       const rows = getRowItems(repositories.nodes);
 
       return (
         <>
-          <RepoTable headers={headers} rows={rows} />
+          <RepoTable headers={headers} rows={rows}/>
         </>
       );
     }}
