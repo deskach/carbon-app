@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './_repo-page.scss';
 import RepoTable from "./RepoTable";
 import { gql, OperationVariables } from 'apollo-boost';
-import { DataTableRow, DataTableSkeleton, Link } from 'carbon-components-react';
+import { DataTableRow, DataTableSkeleton, Link, Pagination } from 'carbon-components-react';
 import { Query, QueryResult } from 'react-apollo';
 
 const REPO_QUERY = gql`
@@ -105,6 +105,10 @@ const headers = [
 ];
 
 const RepoPage = () => {
+  // const [totalItems, setTotalItems] = useState(0);
+  const [firstRowIndex, setFirstRowIndex] = useState(0);
+  const [currentPageSize, setCurrentPageSize] = useState(10);
+
   return <Query query={REPO_QUERY}>
     {({loading, error, data}: QueryResult<any, OperationVariables>) => {
       // Wait for the request to complete
@@ -123,11 +127,29 @@ const RepoPage = () => {
 
       // If we're here, we've got our data!
       const {repositories} = data.organization;
+      // setTotalItems(repositories.totalCount);
       const rows = getRowItems(repositories.nodes);
 
       return (
         <>
-          <RepoTable headers={headers} rows={rows}/>
+          <RepoTable headers={headers} rows={rows.slice(
+            firstRowIndex,
+            firstRowIndex + currentPageSize
+          )}/>
+          <Pagination
+            totalItems={repositories.totalCount}
+            backwardText="Previous page"
+            forwardText="Next page"
+            pageSize={currentPageSize}
+            pageSizes={[5, 10, 15, 25]}
+            itemsPerPageText="Items per page"
+            onChange={({ page, pageSize }) => {
+              if (pageSize !== currentPageSize) {
+                setCurrentPageSize(pageSize);
+              }
+              setFirstRowIndex(pageSize * (page - 1));
+            }}
+          />
         </>
       );
     }}
