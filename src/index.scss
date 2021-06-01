@@ -1,4 +1,21 @@
-@import './node_modules/carbon-components/scss/globals/scss/styles.scss';
+//@import './node_modules/carbon-components/scss/globals/scss/styles.scss';
+// Feature flags
+$css--font-face: true;
+$css--plex: true;
+
+// Global styles
+@import './node_modules/carbon-components/scss/globals/scss/css--font-face';
+@import './node_modules/carbon-components/scss/globals/grid/grid';
+
+// Carbon components
+@import './node_modules/carbon-components/scss/components/breadcrumb/breadcrumb';
+@import './node_modules/carbon-components/scss/components/button/button';
+@import './node_modules/carbon-components/scss/components/data-table/data-table';
+@import './node_modules/carbon-components/scss/components/link/link';
+@import './node_modules/carbon-components/scss/components/pagination/pagination';
+@import './node_modules/carbon-components/scss/components/tabs/tabs';
+@import './node_modules/carbon-components/scss/components/ui-shell/ui-shell';
+
 @import './node_modules/carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family.scss';
 @import './node_modules/carbon-components/scss/globals/scss/vendor/@carbon/layout/scss/breakpoint.scss';
 @import './node_modules/carbon-components/scss/globals/scss/typography.scss';
